@@ -50,7 +50,6 @@ class TestAcademyBugs:
         expect(contact_page.error_message).to_be_visible()
         take_screenshot(send_page, "test1: Contact Us form error message")
 
-    @pytest.mark.skip
     def test_videoplayer_button(self, test_before_each, page: Page):
         """Should verify video player button returns an error page"""
         expect(self.page).to_have_url('https://academybugs.com/#')
@@ -67,7 +66,6 @@ class TestAcademyBugs:
         news_page.click_play_button2()
         take_screenshot(video_page, "test2: Latest News page with video player")
 
-    @pytest.mark.skip
     def test_articles_button(self, test_before_each, page: Page):
         """Should verify articles show an error page"""
         expect(self.page).to_have_url('https://academybugs.com/#')
