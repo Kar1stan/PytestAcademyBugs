@@ -33,11 +33,9 @@ jobs:
          - name: Run tests
            run: pytest
            
-         - name: Deploy 🚀
+         - name: Deploy to GitHub Pages
            if: always()
-           uses: JamesIves/github-pages-deploy-action@4
+           uses: peaceiris/actions-gh-pages@v3
            with:
-             branch: gh-pages
-             folder: allure-results
-           env:
-             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+             github_token: ${{ secrets.GITHUB_TOKEN }}
+             publish_dir: ./
