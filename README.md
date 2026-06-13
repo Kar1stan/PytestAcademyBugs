@@ -1,5 +1,4 @@
-# PyTestUltimateQA
-
+# PytestAcademyBugs
 ---
 
 Playwright+pytest automation tests on https://academybugs.com/# for practice.
