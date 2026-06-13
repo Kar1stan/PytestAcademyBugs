@@ -39,6 +39,33 @@ After the tests have run to see the reports open the terminal and run:
 allure serve allure-results
 ```
 
+To run docker-compose containers open terminal and run:
+
+```
+docker compose up -d
+```
+
+To stop docker-compose containers open terminal and run:
+
+```
+docker compose down
+```
+
+To see docker-compose containers test logs open terminal and run:
+
+```
+docker-compose logs -f tests
+```
+
+To see Allure reports in browser open terminal ands run:
+
+```
+docker-compose up allure
+```
+
+Then open http://localhost:4040
+
+
 ## Credits
 
 For further help or additional errors [here](https://playwright.dev/python/)
