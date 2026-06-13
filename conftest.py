@@ -16,9 +16,9 @@ def new_page(playwright: Playwright, request):
     if browser_name == 'webkit':
         browser = playwright.webkit.launch(headless=headless)
     context = browser.new_context(viewport={"width": 1920, "height": 1080})
+    page = context.new_page()
     page.set_default_timeout(60000)  # 60 seconds
     page.set_default_navigation_timeout(60000) # Increased timeouts due to Github Actions taking too long loading pages
-    page = context.new_page()
     page.goto('https://academybugs.com/#')
     yield page
     browser.close()
