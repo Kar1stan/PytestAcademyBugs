@@ -18,10 +18,11 @@ jobs:
         uses: actions/checkout@v4
       # ============================================================================
       # ALTERNATIVE PATH: Run tests with Docker Compose (uncomment to use)
-      # Note: Docker and default run of the tests can't be used simultaneously
+      # Note: Usually Docker is used to handle dependencies but I wanted to create 2 separate paths to run the worklow
       # ============================================================================
-      #  - name: Create allure-results directory with proper permissions
+      # - name: Create allure-results directory with proper permissions
       #   run: mkdir -p allure-results && chmod 777 allure-results
+      #
       # - name: Build and start services with Docker Compose
       #   run: |
       #     docker compose up --build --detach
