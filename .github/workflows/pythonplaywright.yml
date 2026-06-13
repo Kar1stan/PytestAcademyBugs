@@ -16,6 +16,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        
+      - name: Build and start services
+        run: |
+          docker compose up --build --exit-code-from app
+          # --build to rebuild the image in the container if Dockerfile or code is changed
+          # --exit-code-from app so job fails if the test container fails
+          
+      - name: Stop services
+        run: docker compose down
 
       - name: Set up Python
         uses: actions/setup-python@v6
