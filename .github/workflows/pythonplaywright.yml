@@ -16,19 +16,29 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      # ============================================================================
+      # ALTERNATIVE PATH: Run tests with Docker Compose (uncomment to use)
+      # Note: Docker and default run of the tests can't be used simultaneously
+      # ============================================================================
+      #  - name: Create allure-results directory with proper permissions
+      #   run: mkdir -p allure-results && chmod 777 allure-results
+      # - name: Build and start services with Docker Compose
+      #   run: |
+      #     docker compose up --build --detach
+      #     # --detach to run services in the background
+      #     # --build to rebuild the image if Dockerfile or code is changed
+      #
+      # - name: Run tests
+      #   run: pytest
+      #
+      # - name: Stop services
+      #   run: docker compose down
+      #
+      # ============================================================================
 
-      - name: Create allure-results directory with proper permissions
-        run: mkdir -p allure-results && chmod 777 allure-results
-        
-      - name: Build and start services
-        run: |
-          docker compose up --build --exit-code-from tests
-          # --build to rebuild the image in the container if Dockerfile or code is changed
-          # --exit-code-from so job fails if the test container fails
-          
-      - name: Stop services
-        run: docker compose down
-
+      # ============================================================================
+      # ACTIVE PATH: Run tests directly (default)
+      # ============================================================================
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
