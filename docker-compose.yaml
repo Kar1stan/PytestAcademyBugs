@@ -1,0 +1,56 @@
+services:
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pytest-academy-bugs
+    working_dir: /app
+    
+    # Mount volumes for live code and results
+    volumes:
+      - .:/app
+      - /app/__pycache__
+      - allure-results:/app/allure-results
+      - screenshots:/app/screenshots
+    
+    # Environment variables
+    environment:
+      PYTHONUNBUFFERED: 1
+      # Prevent Python from writing .pyc files to disk
+      PYTHONDONTWRITEBYTECODE: 1
+      # Prevent pip from caching packages
+    
+    # Override default command - modify as needed
+    # For running all tests:
+    command: pytest
+    
+    # For running specific tests, uncomment and modify:
+    # command: pytest tests/ -v
+    
+    # For running with specific markers:
+    # command: pytest -m "smoke" -v
+    
+    # Uncomment to keep container running for debugging
+    # stdin_open: true
+    # tty: true
+
+  # Optional: Allure reporting service for viewing test results
+  allure:
+    image: frankescobar/allure-docker-service:latest
+    container_name: allure-server
+    ports:
+      - "4040:4040"  # Allure web UI
+      - "4041:4041"  # Allure API
+    volumes:
+      - allure-results:/app/allure-results
+      - allure-reports:/app/default-reports
+    environment:
+      CHECK_RESULTS_EVERY_SECONDS: 5
+      # Check for new results every 5 seconds
+      KEEP_HISTORY: 1
+      # Keep history of previous reports
+
+volumes:
+  allure-results:
+  allure-reports:
+  screenshots:
