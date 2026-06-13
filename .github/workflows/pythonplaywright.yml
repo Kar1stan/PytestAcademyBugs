@@ -37,6 +37,9 @@ jobs:
       - name: Install Playwright browsers
         run: playwright install --with-deps
 
+      - name: Create allure-results directory with proper permissions
+        run: mkdir -p allure-results && chmod 777 allure-results
+
       - name: Run tests
         run: pytest
 
