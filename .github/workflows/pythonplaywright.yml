@@ -19,9 +19,9 @@ jobs:
         
       - name: Build and start services
         run: |
-          docker compose up --build --exit-code-from app
+          docker compose up --build --exit-code-from pytest-academy-bugs
           # --build to rebuild the image in the container if Dockerfile or code is changed
-          # --exit-code-from app so job fails if the test container fails
+          # --exit-code-from so job fails if the test container fails
           
       - name: Stop services
         run: docker compose down
